@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Functions and Loops</title>
+</head>
+<body>
+
+<h3>Function</h3>
+<p id="sum"></p>
+
+<h3>For Loop</h3>
+<p id="for"></p>
+
+<h3>While Loop</h3>
+<p id="while"></p>
+
+<h3>String</h3>
+<p id="string"></p>
+
+<h3>Check Length</h3>
+<p id="check"></p>
+
+<script>
+function calculateSum(a,b){
+return a+b;
+}
+
+let result=calculateSum(5,3);
+document.getElementById("sum").innerHTML=result;
+
+let f="";
+for(let i=1;i<=10;i++){
+f+=i+" ";
+}
+document.getElementById("for").innerHTML=f;
+
+let w="";
+let i=2;
+while(i<=20){
+w+=i+" ";
+i+=2;
+}
+document.getElementById("while").innerHTML=w;
+
+let fullName="Rahim Khan";
+
+let upper=fullName.toUpperCase();
+let len=fullName.length;
+let first=fullName.split(" ")[0];
+
+document.getElementById("string").innerHTML=
+upper+"<br>"+len+"<br>"+first;
+
+function checkString(){
+let s=prompt("Enter text");
+if(s.length>5){
+document.getElementById("check").innerHTML="Length greater than 5";
+}else{
+document.getElementById("check").innerHTML="Length 5 or less";
+}
+}
+
+checkString();
+</script>
+
+</body>
+</html>
