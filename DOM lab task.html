@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Student Manager</title>
+<style>
+.present{background:lightgreen;}
+.highlight{border:2px solid red;}
+</style>
+</head>
+<body>
+
+<h2>Student List</h2>
+
+<input id="name" placeholder="Name">
+<input id="roll" placeholder="Roll No">
+<button id="addBtn" disabled>Add</button>
+
+<br><br>
+
+<input id="search" placeholder="Search student">
+
+<ul id="list"></ul>
+
+<p id="total">Total students: 0</p>
+<p id="status">Present: 0, Absent: 0</p>
+
+<button onclick="sortList()">Sort A–Z</button>
+<button onclick="highlightFirst()">Highlight First Student</button>
+
+<script>
+let list=document.getElementById("list");
+let nameInput=document.getElementById("name");
+let rollInput=document.getElementById("roll");
+let addBtn=document.getElementById("addBtn");
+let searchInput=document.getElementById("search");
+
+nameInput.oninput=()=>{
+addBtn.disabled=nameInput.value.trim()==="";
+};
+
+addBtn.onclick=()=>{
+let name=nameInput.value;
+let roll=rollInput.value;
+
+let li=document.createElement("li");
+
+li.innerHTML=`
+<span>${roll} - ${name}</span>
+<input type="checkbox" class="presentChk"> Present
+<button class="edit">Edit</button>
+<button class="delete">Delete</button>
+`;
+
+list.appendChild(li);
+
+nameInput.value="";
+rollInput.value="";
+addBtn.disabled=true;
+
+updateTotal();
+updateStatus();
+};
+
+list.onclick=(e)=>{
+let li=e.target.parentElement;
+
+if(e.target.className==="delete"){
+if(confirm("Are you sure?")){
+li.remove();
+updateTotal();
+updateStatus();
+}
+}
+
+if(e.target.className==="edit"){
+let text=li.querySelector("span").innerText.split(" - ");
+let newRoll=prompt("Edit Roll:",text[0]);
+let newName=prompt("Edit Name:",text[1]);
+
+if(newRoll&&newName){
+li.querySelector("span").innerText=newRoll+" - "+newName;
+}
+}
+
+if(e.target.className==="presentChk"){
+li.classList.toggle("present",e.target.checked);
+updateStatus();
+}
+};
+
+function updateTotal(){
+document.getElementById("total").innerText="Total students: "+list.children.length;
+}
+
+function updateStatus(){
+let present=document.querySelectorAll(".presentChk:checked").length;
+let total=list.children.length;
+document.getElementById("status").innerText=`Present: ${present}, Absent: ${total-present}`;
+}
+
+searchInput.oninput=()=>{
+let text=searchInput.value.toLowerCase();
+
+Array.from(list.children).forEach(li=>{
+let name=li.innerText.toLowerCase();
+li.style.display=name.includes(text)?"":"none";
+});
+};
+
+function sortList(){
+let items=Array.from(list.children);
+
+items.sort((a,b)=>{
+let nameA=a.querySelector("span").innerText.toLowerCase();
+let nameB=b.querySelector("span").innerText.toLowerCase();
+return nameA.localeCompare(nameB);
+});
+
+items.forEach(li=>list.appendChild(li));
+}
+
+function highlightFirst(){
+Array.from(list.children).forEach(li=>li.classList.remove("highlight"));
+if(list.firstElementChild){
+list.firstElementChild.classList.add("highlight");
+}
+}
+</script>
+
+</body>
+</html>
