@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Lab Task</title>
+</head>
+<body>
+
+<h3>Courses</h3>
+<p id="courses"></p>
+
+<h3>Array Operations</h3>
+<p id="arrayOps"></p>
+
+<h3>Single Student</h3>
+<p id="student"></p>
+
+<h3>Student List</h3>
+<p id="students"></p>
+
+<script>
+let courses=["Math","Physics","Chemistry","Biology","English"];
+
+let text="";
+for(let i=0;i<courses.length;i++){
+text+=courses[i]+"<br>";
+}
+
+courses.push("ICT");
+
+for(let i=0;i<courses.length;i++){
+text+=courses[i]+"<br>";
+}
+
+document.getElementById("courses").innerHTML=text;
+
+let length=courses.length;
+courses.pop();
+courses.unshift("Programming");
+
+let final="";
+for(let i=0;i<courses.length;i++){
+final+=courses[i]+" ";
+}
+
+document.getElementById("arrayOps").innerHTML=
+"Length: "+length+"<br>"+final;
+
+let student={
+name:"Rahim",
+id:"101",
+department:"CSE",
+cgpa:"3.80"
+};
+
+document.getElementById("student").innerHTML=
+student.name+"<br>"+student.id+"<br>"+student.department+"<br>"+student.cgpa;
+
+let students=[
+{name:"Rahim",id:"101",department:"CSE",cgpa:"3.8"},
+{name:"Karim",id:"102",department:"EEE",cgpa:"3.6"},
+{name:"Salam",id:"103",department:"BBA",cgpa:"3.7"}
+];
+
+let list="";
+for(let i=0;i<students.length;i++){
+list+=students[i].name+" - "+students[i].id+" - "+students[i].department+" - "+students[i].cgpa+"<br>";
+}
+
+document.getElementById("students").innerHTML=list;
+</script>
+
+</body>
+</html>
