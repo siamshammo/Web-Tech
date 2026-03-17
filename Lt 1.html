@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>JS Lab</title>
+</head>
+<body>
+
+<h3>Output</h3>
+<p id="output"></p>
+
+<h3>Variables</h3>
+<p id="vars"></p>
+
+<h3>Calculation</h3>
+<p id="calc"></p>
+
+<h3>Even or Odd</h3>
+<p id="evenOdd"></p>
+
+<script>
+alert("Welcome");
+console.log("Welcome");
+document.write("Welcome<br>");
+
+let name="Rahim";
+let age=20;
+
+let nextAge=age+1;
+let text="Name: "+name+" Age: "+age;
+
+document.getElementById("vars").innerHTML=
+text+"<br>Next Age: "+nextAge;
+
+let n1=Number(prompt("Enter first number"));
+let n2=Number(prompt("Enter second number"));
+
+let sum=n1+n2;
+let diff=n1-n2;
+let prod=n1*n2;
+
+document.getElementById("calc").innerHTML=
+"Sum: "+sum+"<br>Difference: "+diff+"<br>Product: "+prod;
+
+if(n1%2==0){
+document.getElementById("evenOdd").innerHTML=n1+" is Even";
+}else{
+document.getElementById("evenOdd").innerHTML=n1+" is Odd";
+}
+</script>
+
+</body>
+</html>
