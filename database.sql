@@ -1,11 +1,10 @@
-CREATE DATABASE library_db;
+CREATE DATABASE user_system;
 
-USE library_db;
+USE user_system;
 
-CREATE TABLE books (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(100),
-    author VARCHAR(100),
-    category VARCHAR(100),
-    status VARCHAR(50)
+CREATE TABLE users(
+id INT AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(100),
+email VARCHAR(100),
+password VARCHAR(100)
 );
